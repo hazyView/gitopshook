@@ -20,12 +20,12 @@ jobs:
         uses: docker/setup-buildx-action@v3
         with:
           driver: cloud
-          endpoint: "hazyview/gitopshook"
+          endpoint: "hazyview/github-actions-image-build"
           install: true
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          tags: "${{ secrets.DOCKER_USER }}/gitopstools:latest"
+          tags: "${{ secrets.DOCKER_USER }}/gitops-tools:latest"
           # For pull requests, export results to the build cache.
           # Otherwise, push to a registry.
           outputs: ${{ github.event_name == 'pull_request' && 'type=cacheonly' || 'type=registry' }}
