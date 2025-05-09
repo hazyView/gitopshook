@@ -1,5 +1,15 @@
-FROM busybox
+FROM alpine
+
 LABEL maintainer="fred <mail@fred.nl>"
+
 USER root
-CMD ["sh", "-c", "echo 'Hello World'; echo 'Hello World 2'; echo 'Hello World 3'"]
+
+# Install cool software
+RUN     apk add curl git && \
+        curl -LO https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl && \
+        cp kubectl /usr/local/bin/kubectl && \
+        chmod +x /usr/local/bin/kubectl
+
 USER nobody
+
+#ENTRYPOINT ["/usr/bin/kubectl"]
