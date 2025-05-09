@@ -10,6 +10,7 @@ RUN     apk add curl git && \
         cp kubectl /usr/local/bin/kubectl && \
         chmod +x /usr/local/bin/kubectl
 
-USER nobody
+#Commented out as root is required to perform commands within the container
+#USER nobody
 
 #ENTRYPOINT ["/usr/bin/kubectl"]
